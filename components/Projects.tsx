@@ -47,7 +47,7 @@ const dataAnalystProjects: Project[] = [
       "From p-values to LLMs: this project bridges the gap between deep statistical exploration and the future of AI-driven BI. After identifying key margin disparities in a massive retail dataset, I deployed a local Llama 3.3 agent to automate SQL and visualization via natural language.",
     tags: ["SQL (SQLite, SQLAlchemy)", "Groq AI", "Python (SciPy)", "MCP SDK"],
     image: "/images/VendorsSales.png",
-    githubUrl: "https://github.com/krishnakantsahu/sales-dashboard",
+    githubUrl: "https://github.com/Krishnakant25/DATA-ANALYTICS/tree/main/vendor_sales_analysis",
     period: "2026",
     type: "Data Analytics",
   },
