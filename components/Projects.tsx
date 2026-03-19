@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Project {
   num: string;
@@ -8,14 +8,14 @@ interface Project {
   description: string;
   tags: string[];
   image: string;
-  githubUrl?: string;       // optional — not all projects have GitHub
-  liveUrl?: string;         // optional — Streamlit / Power BI deployed link
-  presentationUrl?: string; // optional — Google Drive presentation
+  githubUrl?: string;
+  liveUrl?: string;
+  presentationUrl?: string;
   period: string;
   type: string;
 }
 
-// ── Section 1: Data Analyst Projects ─────────────────────────────────────────
+// ── Data Analyst Projects ─────────────────────────────────────────────────────
 const dataAnalystProjects: Project[] = [
   {
     num: "01",
@@ -23,7 +23,7 @@ const dataAnalystProjects: Project[] = [
     description:
       "Stop letting 'data debt' compromise your analytics. Data Health Governor automates the tedious cycle of database cleanup by combining LLM-powered detection with a 'Human-in-the-Loop' workflow for ironclad data integrity.",
     tags: ["n8n", "PostgreSQL", "Groq", "Google Gemini", "Google Docs/Drive"],
-    image: "/images/DataGovernance.png",
+    image: "\images\DataGovernance.png",
     githubUrl: "https://github.com/Krishnakant25/DATA-ANALYTICS/tree/main/Data_Health_Governor",
     period: "2025",
     type: "Data Analytics",
@@ -33,8 +33,8 @@ const dataAnalystProjects: Project[] = [
     title: "EV SALES INSIGHTS DASHBOARD",
     description:
       "Data-driven clarity for the green revolution: AtliQ Motors EV Analytics provides a 360-degree strategic view of the Indian EV landscape, transforming raw registration and revenue data into actionable expansion roadmaps.",
-    tags: ["Python", "Power BI"],
-    image: "/images/AtliQMotors.png",
+    tags: ["Python", "FastAPI", "Power BI"],
+    image: "\images\AtliQMotors.png",
     liveUrl: "https://app.powerbi.com/view?r=eyJrIjoiZDVlNWRiMTgtMzM2OC00YmJiLWJkMTItYjY3MGVmZTU0NjZhIiwidCI6ImM2ZTU0OWIzLTVmNDUtNDAzMi1hYWU5LWQ0MjQ0ZGM1YjJjNCJ9",
     presentationUrl: "https://drive.google.com/file/d/15EpP-pMTuFO0bkFuIf2s4W0mCZTKodgL/view",
     period: "2025",
@@ -44,24 +44,24 @@ const dataAnalystProjects: Project[] = [
     num: "03",
     title: "VENDOR PERFORMANCE ANALYSIS – RETAIL INVENTORY & SALES",
     description:
-      "From p-values to LLMs: this project bridges the gap between deep statistical exploration and the future of AI-driven BI. After identifying key margin disparities in a massive retail dataset, I deployed a local Llama 3.3 agent to automate SQL and visualization via natural language.",
-    tags: ["SQL (SQLite, SQLAlchemy)", "Groq AI", "Python (SciPy)", "MCP SDK"],
-    image: "/images/VendorsSales.png",
-    githubUrl: "https://github.com/Krishnakant25/DATA-ANALYTICS/tree/main/vendor_sales_analysis",
+      "From p-values to LLMs: this project bridges the gap between deep statistical exploration and AI-driven BI. After identifying key margin disparities in a massive retail dataset, I deployed a local Llama 3.3 agent to automate SQL and visualization via natural language.",
+    tags: ["SQL", "PostgreSQL", "Tableau", "Python", "Pandas"],
+    image: "\images\VendorsSales.png",
+    githubUrl: "https://github.com/krishnakantsahu/sales-dashboard",
     period: "2026",
     type: "Data Analytics",
   },
 ];
 
-// ── Section 2: Generative AI Projects ────────────────────────────────────────
+// ── Generative AI Projects ────────────────────────────────────────────────────
 const genAIProjects: Project[] = [
   {
     num: "01",
     title: "FINANCIAL KNOWLEDGE HYBRID SEARCH",
     description:
-      "Bridging the gap between vast financial datasets and instant insights, this system achieves an 86.7% Hit Rate@5 using hybrid search to replace hours of manual research with sub-300ms retrieval. By fusing BM25 precision with semantic embeddings, it provides a scalable, cost-efficient engine for context-aware investment research and enterprise Q&A.",
-    tags: ["Hugging Face Transformers", "Pinecone", "Retrieval-Augmented Generation", "Python", "LangChain", "Wikipedia API", "ArXiv API"],
-    image: "/images/Thumbnail_Hybrid_Search.png",
+      "Achieves an 86.7% Hit Rate@5 using hybrid search to replace hours of manual research with sub-300ms retrieval. Fuses BM25 precision with semantic embeddings for scalable, cost-efficient investment research.",
+    tags: ["Hugging Face", "Pinecone", "RAG", "Python", "LangChain"],
+    image: "\images\Thumbnail_Hybrid_Search.png",
     liveUrl: "https://krishnakant25-generativeai-projects-hybrid-searchapp-9h0a6s.streamlit.app/",
     githubUrl: "https://github.com/krishnakantsahu/ai-voice-agent",
     period: "2026",
@@ -69,100 +69,214 @@ const genAIProjects: Project[] = [
   },
   {
     num: "02",
-    title: "BUSINESS INTELLIGENCE CHAT ASSISTANT (NL-TO-SQL AGENT)",
+    title: "BUSINESS INTELLIGENCE CHAT ASSISTANT (NL-TO-SQL)",
     description:
-      "Bridging the gap between natural language and relational databases, this dual-engine (SQLite/MySQL) interface maintains full conversational context while ensuring transparent, read-only query execution. It provides a secure, localized environment pre-configured for Indian business entities.",
-    tags: ["Python", "LangChain", "GROQ – Llama 3.3 70B", "LangChain SQL Agent", "Streamlit", "SQLite / MySQL"],
-    image: "/images/Chat_SQLDB.png",
-    liveUrl: "https://naturallanguage-to-sql.streamlit.app",
+      "Dual-engine (SQLite/MySQL) interface that maintains full conversational context while ensuring transparent, read-only query execution. Pre-configured for Indian business entities with full SQL audit trail.",
+    tags: ["Python", "LangChain", "GROQ Llama 3.3", "Streamlit", "SQLite / MySQL"],
+    image: "\images\Chat_SQLDB.png",
+    liveUrl: "https://generativeaiprojects-vdzwjgbgfzskbwyntgmezc.streamlit.app/",
     githubUrl: "https://github.com/Krishnakant25/GenerativeAI_Projects/tree/main/Chat_With_SQLDB",
     period: "2026",
     type: "Generative AI",
   },
 ];
 
-// ── Helper: pick the best link for a project ──────────────────────────────────
 function getPrimaryUrl(p: Project): string {
   return p.liveUrl || p.githubUrl || p.presentationUrl || "#";
 }
 
-// ── Helper: pick a label for the link ────────────────────────────────────────
 function getLinkLabel(p: Project): string {
-  if (p.liveUrl) return "Live Demo ↗";
-  if (p.githubUrl) return "GitHub ↗";
-  if (p.presentationUrl) return "Presentation ↗";
-  return "View ↗";
+  if (p.liveUrl) return "Live Demo";
+  if (p.githubUrl) return "GitHub";
+  if (p.presentationUrl) return "Presentation";
+  return "View";
 }
 
-// ── Reusable project list ─────────────────────────────────────────────────────
-function ProjectList({ projects }: { projects: Project[] }) {
+// ── Horizontal card carousel with hover focus effect ─────────────────────────
+function ProjectCarousel({ projects }: { projects: Project[] }) {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
   return (
-    <ul className="space-y-0" aria-label="Project list" role="list">
-      {projects.map((p, i) => (
-        <li key={p.num} role="listitem">
+    <div
+      className="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory"
+      style={{
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+      }}
+      role="list"
+      aria-label="Project cards"
+    >
+      {projects.map((p, i) => {
+        const isHovered = hoveredIdx === i;
+        const otherHovered = hoveredIdx !== null && !isHovered;
+
+        return (
           <a
+            key={p.num}
             href={getPrimaryUrl(p)}
             target="_blank"
             rel="noopener noreferrer"
-            className={`project-item reveal reveal-delay-${Math.min(i + 1, 4)} group grid grid-cols-1 md:grid-cols-[auto_180px_1fr_auto] items-center gap-6 py-8 px-4 -mx-4`}
+            role="listitem"
             aria-label={`View ${p.title}`}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            className="snap-start shrink-0 relative flex flex-col overflow-hidden border border-[var(--border)] bg-[var(--card)]"
+            style={{
+              width: "clamp(280px, 36vw, 420px)",
+              minHeight: "460px",
+              // Hovered card scales up and comes forward
+              transform: isHovered ? "scale(1.03) translateY(-6px)" : "scale(1) translateY(0)",
+              // Non-hovered cards blur and dim
+              filter: otherHovered ? "blur(1.5px) brightness(0.65)" : "none",
+              opacity: otherHovered ? 0.7 : 1,
+              zIndex: isHovered ? 10 : 1,
+              transition: "transform 0.4s cubic-bezier(0.34,1.56,0.64,1), filter 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease",
+              boxShadow: isHovered
+                ? "0 24px 60px rgba(0,0,0,0.35), 0 0 40px rgba(201,169,110,0.1)"
+                : "none",
+              cursor: "pointer",
+            }}
           >
-            {/* Index number */}
-            <span
-              className="hidden md:block font-mono-custom text-[var(--text-muted)] shrink-0"
-              style={{ fontSize: "0.65rem", letterSpacing: "0.1em" }}
-              aria-hidden="true"
+            {/* Thumbnail */}
+            <div
+              className="relative overflow-hidden"
+              style={{ height: "220px", background: "var(--surface)" }}
             >
-              {p.num}
-            </span>
-
-            {/* Thumbnail — plain img works with Google Drive, Unsplash, any URL */}
-            <div className="relative h-28 overflow-hidden bg-[var(--surface)] w-full md:w-44 shrink-0 flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={p.image}
                 alt={`${p.title} preview`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.6s ease",
+                  transform: isHovered ? "scale(1.06)" : "scale(1)",
+                }}
                 loading="lazy"
                 onError={(e) => {
-                  const target = e.currentTarget as HTMLImageElement;
-                  target.style.display = "none";
-                  const parent = target.parentElement;
-                  if (parent && !parent.querySelector(".img-fallback")) {
+                  const t = e.currentTarget as HTMLImageElement;
+                  t.style.display = "none";
+                  const parent = t.parentElement;
+                  if (parent && !parent.querySelector(".img-fb")) {
                     const fb = document.createElement("div");
-                    fb.className = "img-fallback w-full h-full flex items-center justify-center";
-                    fb.style.cssText = "background:var(--border);";
-                    fb.innerHTML = `<span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em">${p.num}</span>`;
+                    fb.className = "img-fb";
+                    fb.style.cssText = "width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--border);";
+                    fb.innerHTML = `<span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-muted);letter-spacing:0.15em">${p.num}</span>`;
                     parent.appendChild(fb);
                   }
                 }}
               />
+
+              {/* Period badge */}
+              <div
+                className="absolute top-3 right-3 font-mono-custom"
+                style={{
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.1em",
+                  padding: "3px 8px",
+                  background: "rgba(0,0,0,0.55)",
+                  backdropFilter: "blur(6px)",
+                  color: "rgba(255,255,255,0.8)",
+                }}
+              >
+                {p.period}
+              </div>
+
+              {/* Hover overlay with link label */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(0,0,0,0.45)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: isHovered ? 1 : 0,
+                  transition: "opacity 0.3s ease",
+                }}
+              >
+                <span
+                  className="font-mono-custom"
+                  style={{
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.15em",
+                    color: "white",
+                    padding: "6px 16px",
+                    border: "1px solid rgba(255,255,255,0.4)",
+                    backdropFilter: "blur(4px)",
+                  }}
+                >
+                  {getLinkLabel(p)} ↗
+                </span>
+              </div>
             </div>
 
-            {/* Title + description + tags */}
-            <div className="flex-1 min-w-0">
+            {/* Card content */}
+            <div className="flex flex-col flex-1 p-5">
+              {/* Number + type */}
+              <div className="flex items-center justify-between mb-3">
+                <span
+                  className="font-mono-custom text-[var(--text-muted)]"
+                  style={{ fontSize: "0.6rem", letterSpacing: "0.12em" }}
+                >
+                  {p.num}
+                </span>
+                <span
+                  className="font-mono-custom"
+                  style={{
+                    fontSize: "0.58rem",
+                    letterSpacing: "0.1em",
+                    color: p.type === "Generative AI" ? "var(--accent)" : "var(--accent-sage)",
+                    padding: "2px 8px",
+                    border: `1px solid ${p.type === "Generative AI" ? "rgba(201,169,110,0.3)" : "rgba(122,171,138,0.3)"}`,
+                  }}
+                >
+                  {p.type.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Title */}
               <h3
-                className="font-display font-medium mb-2 group-hover:text-[var(--accent)] transition-colors"
-                style={{ fontSize: "clamp(1.1rem, 2vw, 1.5rem)", letterSpacing: "-0.01em" }}
+                className="font-display font-medium mb-3 leading-tight"
+                style={{
+                  fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
+                  letterSpacing: "-0.01em",
+                  color: isHovered ? "var(--accent)" : "var(--text)",
+                  transition: "color 0.3s ease",
+                }}
               >
                 {p.title}
               </h3>
+
+              {/* Description */}
               <p
-                className="text-[var(--text-secondary)] mb-3 line-clamp-2 pr-4"
-                style={{ fontSize: "0.85rem", lineHeight: "1.6" }}
+                className="text-[var(--text-secondary)] mb-4 flex-1"
+                style={{ fontSize: "0.8rem", lineHeight: "1.65", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}
               >
                 {p.description}
               </p>
-              <div className="flex flex-wrap gap-1.5" role="list" aria-label="Technologies">
-                {p.tags.map((t) => (
-                  <span key={t} className="skill-tag" role="listitem" style={{ fontSize: "0.6rem" }}>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {p.tags.slice(0, 4).map((t) => (
+                  <span
+                    key={t}
+                    className="skill-tag"
+                    style={{ fontSize: "0.58rem" }}
+                  >
                     {t}
                   </span>
                 ))}
+                {p.tags.length > 4 && (
+                  <span className="skill-tag" style={{ fontSize: "0.58rem" }}>
+                    +{p.tags.length - 4}
+                  </span>
+                )}
               </div>
 
-              {/* Extra links row — shows GitHub + Presentation if liveUrl is primary */}
-              <div className="flex flex-wrap gap-3 mt-3">
+              {/* Extra links */}
+              <div className="flex gap-4 pt-3 border-t border-[var(--border)]">
                 {p.liveUrl && p.githubUrl && (
                   <a
                     href={p.githubUrl}
@@ -170,8 +284,7 @@ function ProjectList({ projects }: { projects: Project[] }) {
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                     className="font-mono-custom text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
-                    style={{ fontSize: "0.62rem", letterSpacing: "0.08em" }}
-                    aria-label="View source on GitHub"
+                    style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}
                   >
                     GitHub ↗
                   </a>
@@ -183,31 +296,17 @@ function ProjectList({ projects }: { projects: Project[] }) {
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                     className="font-mono-custom text-[var(--text-muted)] hover:text-[var(--accent-sage)] transition-colors"
-                    style={{ fontSize: "0.62rem", letterSpacing: "0.08em" }}
-                    aria-label="View presentation"
+                    style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}
                   >
-                    Presentation ↗
+                    Slides ↗
                   </a>
                 )}
               </div>
             </div>
-
-            {/* Year + type + dynamic link label */}
-            <div className="hidden md:flex flex-col items-end gap-2 shrink-0">
-              <span className="section-label">{p.period}</span>
-              <span className="section-label">{p.type}</span>
-              <span
-                className="project-arrow font-mono-custom text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors mt-2 text-right"
-                style={{ fontSize: "0.62rem", letterSpacing: "0.08em" }}
-                aria-hidden="true"
-              >
-                {getLinkLabel(p)}
-              </span>
-            </div>
           </a>
-        </li>
-      ))}
-    </ul>
+        );
+      })}
+    </div>
   );
 }
 
@@ -217,11 +316,8 @@ export default function Projects() {
 
   useEffect(() => {
     const obs = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.06 }
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+      { threshold: 0.04 }
     );
     ref.current?.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -236,8 +332,8 @@ export default function Projects() {
     >
       <div className="page-padding max-w-screen-xl mx-auto">
 
-        {/* ── Top header ── */}
-        <div className="mb-20 reveal">
+        {/* Header */}
+        <div className="mb-16 reveal">
           <p className="section-label mb-5">02 · Projects</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2
@@ -252,45 +348,44 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
               className="nav-link mb-2"
-              aria-label="View all work on GitHub"
             >
               View all on GitHub ↗
             </a>
           </div>
         </div>
 
-        {/* ══════════════════════════════════════════
-            SECTION A — Data Analyst Projects
-        ══════════════════════════════════════════ */}
-        <div className="mb-20">
-          <div className="reveal flex items-center gap-5 mb-10">
+        {/* ── DATA ANALYTICS ── */}
+        <div className="mb-16 reveal">
+          <div className="flex items-center gap-5 mb-8">
             <div
               className="flex items-center gap-2 px-4 py-1.5 border"
               style={{ borderColor: "var(--accent-sage)", background: "rgba(122,171,138,0.06)" }}
             >
-              <span className="font-mono-custom" style={{ fontSize: "0.6rem", letterSpacing: "0.15em", color: "var(--accent-sage)" }}>◆</span>
-              <span className="font-mono-custom" style={{ fontSize: "0.65rem", letterSpacing: "0.12em", color: "var(--accent-sage)" }}>DATA ANALYTICS</span>
+              <span style={{ fontSize: "0.6rem", color: "var(--accent-sage)" }}>◆</span>
+              <span className="font-mono-custom" style={{ fontSize: "0.65rem", letterSpacing: "0.12em", color: "var(--accent-sage)" }}>
+                DATA ANALYTICS
+              </span>
             </div>
             <div className="flex-1 h-px bg-[var(--border)]" aria-hidden="true" />
           </div>
-          <ProjectList projects={dataAnalystProjects} />
+          <ProjectCarousel projects={dataAnalystProjects} />
         </div>
 
-        {/* ══════════════════════════════════════════
-            SECTION B — Generative AI Projects
-        ══════════════════════════════════════════ */}
-        <div>
-          <div className="reveal flex items-center gap-5 mb-10">
+        {/* ── GENERATIVE AI ── */}
+        <div className="reveal">
+          <div className="flex items-center gap-5 mb-8">
             <div
               className="flex items-center gap-2 px-4 py-1.5 border"
               style={{ borderColor: "var(--accent)", background: "rgba(201,169,110,0.06)" }}
             >
-              <span className="font-mono-custom" style={{ fontSize: "0.6rem", letterSpacing: "0.15em", color: "var(--accent)" }}>◆</span>
-              <span className="font-mono-custom" style={{ fontSize: "0.65rem", letterSpacing: "0.12em", color: "var(--accent)" }}>GENERATIVE AI</span>
+              <span style={{ fontSize: "0.6rem", color: "var(--accent)" }}>◆</span>
+              <span className="font-mono-custom" style={{ fontSize: "0.65rem", letterSpacing: "0.12em", color: "var(--accent)" }}>
+                GENERATIVE AI
+              </span>
             </div>
             <div className="flex-1 h-px bg-[var(--border)]" aria-hidden="true" />
           </div>
-          <ProjectList projects={genAIProjects} />
+          <ProjectCarousel projects={genAIProjects} />
         </div>
 
       </div>

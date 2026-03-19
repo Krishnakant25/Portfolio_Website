@@ -5,20 +5,20 @@ import { useEffect, useRef } from "react";
 const contacts = [
   {
     label: "Email",
-    value: "Krishnakantnew14@gmail.com",
-    href: "mailto:Krishnakantnew14@gmail.com",
+    value: "krishnakantsahu@example.com",
+    href: "mailto:krishnakantsahu@example.com",
     sub: "Drop me a line",
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/krishna-kant-sahu-ai",
-    href: "https://www.linkedin.com/in/krishna-kant-sahu-ai/",
+    value: "linkedin.com/in/krishnakantsahu",
+    href: "https://linkedin.com/in/krishnakantsahu",
     sub: "Let's connect professionally",
   },
   {
     label: "GitHub",
-    value: "github.com/krishnakantsahu25",
-    href: "https://github.com/Krishnakant25",
+    value: "github.com/krishnakantsahu",
+    href: "https://github.com/krishnakantsahu",
     sub: "Browse my repositories",
   },
 ];
@@ -46,7 +46,7 @@ export default function Footer() {
 
         {/* Heading */}
         <div className="mb-16 reveal">
-          <p className="section-label mb-5">03 · Contact</p>
+          <p className="section-label mb-5">04 · Contact</p>
           <h2
             className="font-display font-light"
             style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)", letterSpacing: "-0.02em" }}

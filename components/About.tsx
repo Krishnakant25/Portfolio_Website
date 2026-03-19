@@ -5,42 +5,31 @@ import { useEffect, useRef } from "react";
 const certifications = [
   {
     code: "01",
-    title: "Google Advanced Data Analytics Professional Certificate",
+    title: "Google Data Analytics Professional Certificate",
     issuer: "Google · Coursera",
-    year: "2026",
+    year: "2023",
   },
   {
     code: "02",
-    title: "IBM AI Engineering Professional Certificate",
+    title: "IBM Data Science & AI Professional Certificate",
     issuer: "IBM · Coursera",
-    year: "2026",
+    year: "2023",
   },
   {
     code: "03",
-    title: "Mathematics for Machine Learning Specialization",
-    issuer: "Imperial College London · Coursera",
-    year: "2026",
-  },
-  {
-    code: "04",
-    title: "Claude AI Developer Certification – Anthropic Academy",
-    issuer: "Anthropic",
-    year: "2026",
-  },
-  {
-    code: "05",
-    title: "Data Analytics Bootcamp 5.0 - Job Placement Support + AI Automation & Data Engineering",
-    issuer: "Codebasics",
-    year: "2025",
+    title: "Mathematics for Machine Learning & Data Science",
+    issuer: "Imperial College London · DeepLearning.AI",
+    year: "2024",
   },
 ];
 
 const skills = [
-  "Python (Pandas, NumPy, Scikit-Learn)", "SQL (PostgreSQL, MySQL)",
-  "LangChain", "OpenAI API", "Groq API",
-  "Streamlit", "TensorFlow", "PyTorch",
+  "Python", "SQL", "Pandas", "NumPy",
+  "LangChain", "OpenAI API", "Whisper",
+  "FastAPI", "PostgreSQL", "SQLite",
   "Power BI", "Tableau", "Excel",
-  "n8n", "Git", "Docker",
+  "n8n", "Make.com", "Zapier",
+  "Git", "Docker", "Linux",
 ];
 
 // ── FIX: Capability pillars replacing stats boxes ──────────────────────────
