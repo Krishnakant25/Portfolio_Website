@@ -74,7 +74,7 @@ const genAIProjects: Project[] = [
       "Bridging the gap between natural language and relational databases, this dual-engine (SQLite/MySQL) interface maintains full conversational context while ensuring transparent, read-only query execution. It provides a secure, localized environment pre-configured for Indian business entities.",
     tags: ["Python", "LangChain", "GROQ – Llama 3.3 70B", "LangChain SQL Agent", "Streamlit", "SQLite / MySQL"],
     image: "/images/Chat_SQLDB.png",
-    liveUrl: "https://generativeaiprojects-vdzwjgbgfzskbwyntgmezc.streamlit.app/",
+    liveUrl: "https://naturallanguage-to-sql.streamlit.app",
     githubUrl: "https://github.com/Krishnakant25/GenerativeAI_Projects/tree/main/Chat_With_SQLDB",
     period: "2026",
     type: "Generative AI",
